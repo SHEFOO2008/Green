@@ -18,7 +18,7 @@ class BoardingModel
 }
 
 class OnBoardingScreen extends StatefulWidget {
-  OnBoardingScreen({Key? key}) : super(key: key);
+  const OnBoardingScreen({Key? key}) : super(key: key);
 
   @override
   State<OnBoardingScreen> createState() => _OnBoardingScreenState();
@@ -43,6 +43,12 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
       title: 'On Boarding Title 3',
       body: 'On Boarding Body 3',
     ),
+    BoardingModel(
+      image: 'assets/images/recycling_1.png',
+      title: 'On Boarding Title 4',
+      body: 'On Boarding Body 4',
+    ),
+
   ];
 
   bool isLast = false;
