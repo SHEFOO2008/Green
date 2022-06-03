@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:green/shared/components/button.dart';
 
 import '../../shared/custom_widgets/TextFormFieldWidget.dart';
 
@@ -24,7 +25,7 @@ class LoginScreen extends StatelessWidget {
                 style: Theme.of(context).textTheme.headline5,
               ),
               Text(
-                  'login now to save the world',
+                  'Save the world',
                 style: Theme.of(context).textTheme.bodyText1?.copyWith(
                   color: Colors.grey,
                 ),
@@ -99,6 +100,7 @@ class LoginScreen extends StatelessWidget {
                   Radius.circular(10),
                 ),
               ),
+              button(clr, txt, img)
               TextButton(
                   onPressed: () {
                     if(_formKey.currentState!.validate()) {
