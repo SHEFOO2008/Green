@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 class DefaultButton extends StatelessWidget {
+  final double? height;
+  final double? minWidth;
+  final double? elevation;
   final double? focusElevation;
   final double? hoverElevation;
   final double? highlightElevation;
-  final double? minWidth;
-  final double? height;
-  final double? elevation;
   final double? disabledElevation;
 
   final Color? color;
@@ -20,10 +20,12 @@ class DefaultButton extends StatelessWidget {
 
   final Widget? child;
 
-  final Duration? duration;
   final ShapeBorder? shape;
-  final Padding? padding;
-  final TextTheme? textTheme;
+  final EdgeInsetsGeometry? padding;
+  final ButtonTextTheme? textTheme;
+  final Duration? duration;
+  final Clip? clipBehavior;
+  final Brightness? colorBrightness;
 
   final bool? autoFocus;
   final bool? enabledFeedback;
@@ -31,62 +33,96 @@ class DefaultButton extends StatelessWidget {
   final MaterialTapTargetSize? materialTapTargetSize;
   final FocusNode? focusNode;
 
-  final Clip? clipBehavior;
-  final Brightness? colorBrightness;
 
   final MouseCursor? mouseCursor;
   final VisualDensity? visualDensity;
 
   final void Function()? onPressed;
   final void Function()? onLongPress;
-  final void Function()? onHighlightChanged;
+  final void Function(bool)? onHighlightChanged;
 
-  final Key? key;
+  const DefaultButton({
+    this.height,
+    this.minWidth,
+    this.elevation,
+    this.focusElevation,
+    this.hoverElevation,
+    this.highlightElevation,
+    this.disabledElevation,
 
-  DefaultButton({
-    this.
-})
+    this.color,
+    this.textColor,
+    this.focusColor,
+    this.hoverColor,
+    this.highlightColor,
+    this.splashColor,
+    this.disabledColor,
+    this.disabledTextColor,
 
-  const DefaultButton({Key? key}) : super(key: key);
+    this.shape,
+    this.padding,
+    this.textTheme,
+    this.duration,
+    this.clipBehavior,
+    this.colorBrightness,
+
+    this.autoFocus,
+    this.enabledFeedback,
+
+    this.materialTapTargetSize,
+    this.focusNode,
+
+    this.mouseCursor,
+    this.visualDensity,
+
+    this.onPressed,
+    this.onLongPress,
+    this.onHighlightChanged,
+
+    this.child,
+
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
-      onPressed: () {},
-      child: Text('Default Button'),
-      color: Colors.blue,
       height: 15.0,
-      key: null,
-      animationDuration: Duration(milliseconds: 0),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(30.0),
-      ),
-      padding: EdgeInsets.all(0.0),
-      textColor: Colors.white,
-      elevation: 0.0,
-      textTheme: ButtonTextTheme.normal,
-      focusColor: Colors.blue,
-      hoverColor: Colors.blue,
-      highlightColor: Colors.blue,
-      splashColor: Colors.blue,
-      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-      focusNode: null,
-      autofocus: false,
-      clipBehavior: Clip.none,
-      colorBrightness: Brightness.dark,
-      disabledColor: Colors.blue,
-      disabledElevation: 0.0,
-      disabledTextColor: Colors.blue,
-      enableFeedback: true,
-      focusElevation: 0.0,
-      hoverElevation: 0.0,
-      highlightElevation: 0.0,
       minWidth: double.infinity,
-      mouseCursor: MouseCursor.defer,
-      onLongPress: null,
-      onHighlightChanged: null,
-      visualDensity: VisualDensity.adaptivePlatformDensity,
+      elevation: elevation,
+      focusElevation: focusElevation,
+      hoverElevation: hoverElevation,
+      highlightElevation: highlightElevation,
+      disabledElevation: disabledElevation,
 
+      color: color,
+      textColor: textColor,
+      focusColor: focusColor,
+      hoverColor: hoverColor,
+      highlightColor: highlightColor,
+      splashColor: splashColor,
+      disabledColor: disabledColor,
+      disabledTextColor: disabledTextColor,
+      shape: shape,
+      padding: padding,
+      textTheme: textTheme,
+      animationDuration: duration,
+      clipBehavior: clipBehavior!,
+
+      autofocus: autoFocus!,
+      enableFeedback: enabledFeedback!,
+
+      materialTapTargetSize: materialTapTargetSize,
+      focusNode: focusNode,
+
+      mouseCursor: mouseCursor,
+      visualDensity: visualDensity,
+
+      onPressed: onPressed,
+      onLongPress: onLongPress,
+      onHighlightChanged: onHighlightChanged,
+
+      child: child,
     );
   }
 }
