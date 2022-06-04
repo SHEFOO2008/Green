@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:green/shared/styles/colors.dart';
 
 class DefaultButton extends StatelessWidget {
   final double? height;
@@ -24,11 +25,11 @@ class DefaultButton extends StatelessWidget {
   final EdgeInsetsGeometry? padding;
   final ButtonTextTheme? textTheme;
   final Duration? duration;
-  final Clip? clipBehavior;
+  final Clip clipBehavior;
   final Brightness? colorBrightness;
 
-  final bool? autoFocus;
-  final bool? enabledFeedback;
+  final bool autoFocus;
+  final bool enabledFeedback;
 
   final MaterialTapTargetSize? materialTapTargetSize;
   final FocusNode? focusNode;
@@ -50,7 +51,7 @@ class DefaultButton extends StatelessWidget {
     this.highlightElevation,
     this.disabledElevation,
 
-    this.color,
+    this.color = Colors.green,
     this.textColor,
     this.focusColor,
     this.hoverColor,
@@ -63,11 +64,11 @@ class DefaultButton extends StatelessWidget {
     this.padding,
     this.textTheme,
     this.duration,
-    this.clipBehavior,
+    this.clipBehavior = Clip.none,
     this.colorBrightness,
 
-    this.autoFocus,
-    this.enabledFeedback,
+    this.autoFocus = false,
+    this.enabledFeedback = true,
 
     this.materialTapTargetSize,
     this.focusNode,
@@ -82,13 +83,14 @@ class DefaultButton extends StatelessWidget {
     this.child,
 
     Key? key,
-  }) : super(key: key);
+  }) :
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
-      height: 15.0,
-      minWidth: double.infinity,
+      height: height,
+      minWidth: minWidth,
       elevation: elevation,
       focusElevation: focusElevation,
       hoverElevation: hoverElevation,
@@ -107,10 +109,11 @@ class DefaultButton extends StatelessWidget {
       padding: padding,
       textTheme: textTheme,
       animationDuration: duration,
-      clipBehavior: clipBehavior!,
+      clipBehavior: clipBehavior,
+      colorBrightness: colorBrightness,
 
-      autofocus: autoFocus!,
-      enableFeedback: enabledFeedback!,
+      autofocus: autoFocus,
+      enableFeedback: enabledFeedback,
 
       materialTapTargetSize: materialTapTargetSize,
       focusNode: focusNode,
@@ -121,6 +124,8 @@ class DefaultButton extends StatelessWidget {
       onPressed: onPressed,
       onLongPress: onLongPress,
       onHighlightChanged: onHighlightChanged,
+
+      key: key,
 
       child: child,
     );
