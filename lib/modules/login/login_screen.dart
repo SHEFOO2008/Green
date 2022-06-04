@@ -1,13 +1,11 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:green/modules/onBoarding/on_boarding_screen.dart';
-import 'package:green/shared/components/button.dart';
-import 'package:green/shared/components/default_button.dart';
-
 import '../../shared/custom_widgets/TextFormFieldWidget.dart';
 
 class LoginScreen extends StatelessWidget {
-  var _formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
+
+  LoginScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
