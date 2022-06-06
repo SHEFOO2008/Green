@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../styles/colors.dart';
+
 class TextFormFieldWidget extends StatelessWidget {
   final TextEditingController? controller;
   final String? Function(String?) validation;
@@ -26,6 +28,7 @@ class TextFormFieldWidget extends StatelessWidget {
   final Color? labelColor;
   final bool obsecureText;
   final Function()? onSuffixPressed;
+  final FocusNode? focusNode;
 
   const TextFormFieldWidget({
     this.controller,
@@ -53,6 +56,7 @@ class TextFormFieldWidget extends StatelessWidget {
     this.labelColor,
     required this.obsecureText,
     this.onSuffixPressed,
+    this.focusNode,
     Key? key,
   }) : super(key: key);
 
@@ -60,6 +64,7 @@ class TextFormFieldWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      focusNode: focusNode,
       controller: controller,
       key: fieldKey,
       validator: validation,

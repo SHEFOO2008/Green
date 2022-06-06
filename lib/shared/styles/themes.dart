@@ -87,10 +87,21 @@ ThemeData darkTheme = ThemeData(
       fontWeight: FontWeight.w600,
       color: Colors.white,
     ),
+    headline5: TextStyle(
+      color: Colors.white,
+    ),
   ),
   iconTheme: const IconThemeData(color: Colors.white),
+    hintColor: Colors.grey,
+    inputDecorationTheme: const InputDecorationTheme(
+      focusColor: Colors.green,
+      hintStyle: TextStyle(
+        color: Colors.grey,
+      ),
+    )
 );
 ThemeData lightTheme = ThemeData(
+
   primarySwatch: primarySwatch,
   scaffoldBackgroundColor: Colors.white,
   appBarTheme: appBarDarkTheme,
@@ -112,4 +123,11 @@ ThemeData lightTheme = ThemeData(
   ),
   fontFamily: 'Lato-Regular',
   iconTheme: const IconThemeData(color: Colors.black),
+    hintColor: Colors.grey,
+    inputDecorationTheme: const InputDecorationTheme(
+      focusColor: Colors.green,
+      hintStyle: TextStyle(
+        color: Colors.grey,
+      ),
+    )
 );

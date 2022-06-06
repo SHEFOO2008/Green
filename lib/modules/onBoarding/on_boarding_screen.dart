@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:green/modules/login/login_screen.dart';
 import 'package:green/shared/Functions.dart';
+import 'package:green/shared/components/DefaultTextButton.dart';
 import 'package:green/shared/styles/colors.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -61,25 +62,16 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         actions: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: TextButton(
-                style: const ButtonStyle(
-                  enableFeedback: true,
-                  animationDuration: Duration(
-                    milliseconds: 0,
-                  ),
+            child: defaultTextButton(
+                text: 'SKIP',
+                textStyle: TextStyle(
+                  color: greenColor,
+                  fontWeight: FontWeight.w700,
                 ),
-
-                onPressed: () {
-                  navigateAndReplaceTo(LoginScreen(), context);
-                },
-                child: const Text(
-                  'SKIP',
-                  style: TextStyle(
-                    // color: Colors.black54,
-                    fontWeight: FontWeight.w700,
-                  ),
-                )
-            ),
+              onPressed: () {
+                navigateAndReplaceTo(LoginScreen(), context);
+              }
+            )
           ),
         ],
       ),
