@@ -2,6 +2,8 @@ import 'package:conditional_builder_null_safety/conditional_builder_null_safety.
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:green/models/login_model.dart';
 import 'package:green/modules/login/cubit/cubit.dart';
 import 'package:green/modules/login/cubit/states.dart';
 import 'package:green/modules/register/register_screen.dart';
@@ -21,7 +23,38 @@ class LoginScreen extends StatelessWidget {
     return BlocProvider(
       create: (BuildContext context) => LoginCubit(),
       child: BlocConsumer<LoginCubit, LoginStates>(
-        listener: (context, state) {},
+        listener: (context, state) {
+          if(state is LoginSuccessState)
+            {
+              if(state.loginModel.status == true)
+                {
+                  print(state.loginModel.data?.token);
+                  print(state.loginModel.message);
+                  Fluttertoast.showToast(
+                    msg: state.loginModel.message!,
+                    toastLength: Toast.LENGTH_LONG,
+                    gravity: ToastGravity.BOTTOM,
+                    timeInSecForIosWeb: 5,
+                    backgroundColor: Colors.green,
+                    textColor: Colors.white,
+                    fontSize: 16.0,
+                  );
+                }
+              else
+                {
+                  print(state.loginModel.message);
+                  Fluttertoast.showToast(
+                    msg: state.loginModel.message!,
+                    toastLength: Toast.LENGTH_LONG,
+                    gravity: ToastGravity.BOTTOM,
+                    timeInSecForIosWeb: 5,
+                    backgroundColor: Colors.red,
+                    textColor: Colors.white,
+                    fontSize: 16.0,
+                  );
+                }
+            }
+        },
         builder: (context, state) {
           return Scaffold(
           appBar: AppBar(),
@@ -130,7 +163,6 @@ class LoginScreen extends StatelessWidget {
 
                             if(_formKey.currentState!.validate())
                               {
-                                print('test');
                                 LoginCubit.get(context).userLogin(
                                   email: emailController.text,
                                   password: passwordController.text,

@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:green/modules/login/cubit/states.dart';
 import 'package:green/shared/network/remote/dio_helper.dart';
+import '../../../models/login_model.dart';
 import '../../../shared/network/end_points.dart';
 
 class LoginCubit extends Cubit<LoginStates> {
   LoginCubit() : super(LoginInitialState());
 
   static LoginCubit get(context) => BlocProvider.of(context);
+  LoginModel? loginModel;
 
   void userLogin({
     required String email,
@@ -23,11 +25,11 @@ class LoginCubit extends Cubit<LoginStates> {
            'password' : password,
          },
     ).then((value) {
+      loginModel = LoginModel.fromJosn(value.data);
+      print(loginModel?.data?.phone);
       print(value.data);
-      emit(LoginSuccessState());
-      }).catchError((error){
-       emit(LoginErrorState(error.toString()));
-    });
+      emit(LoginSuccessState(loginModel!));
+      });
   }
 
 
