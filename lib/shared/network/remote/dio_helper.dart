@@ -2,10 +2,10 @@ import 'package:dio/dio.dart';
 
 class DioHelper
 {
-  static Dio? dio;
+  static late Dio? dio;
 
   static init () {
-    dio = Dio(
+    dio =  Dio(
       BaseOptions(
         baseUrl: "https://student.valuxapps.com/api/",
         receiveDataWhenStatusError: true,
@@ -17,15 +17,15 @@ class DioHelper
     required String url,
     Map<String, dynamic>? query,
     String lang = 'en',
-      String? token,
+    String? token,
   }) async
   {
     dio?.options.headers = {
-          'Content-Type':'application/json',
-          'lang':lang,
-          'Authorization':token
-        };
-      return await dio!.get(url, queryParameters: query,);
+      'Content-Type':'application/json',
+      'lang':lang,
+      'Authorization':token
+    };
+    return await dio!.get(url, queryParameters: query,);
   }
 
   static Future<Response> postData({
@@ -34,16 +34,15 @@ class DioHelper
     required Map<String, dynamic> data,
     String lang = 'en',
     String? token,
-}) async
+  }) async
   {
     dio?.options.headers = {
       'Content-Type':'application/json',
       'lang':lang,
       'Authorization':token
     };
-
-    return dio!.post(
-        url,
+    return await dio!.post(
+      url,
       queryParameters: query,
       data: data,
     );
