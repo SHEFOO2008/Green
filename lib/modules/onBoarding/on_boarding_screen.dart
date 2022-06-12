@@ -69,7 +69,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   fontWeight: FontWeight.w700,
                 ),
               onPressed: () {
-                navigateAndReplaceTo(LoginScreen(), context);
+                submit(context);
               }
             )
           ),
@@ -115,7 +115,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   onPressed: () {
                     if(isLast == true)
                       {
-                        navigateAndReplaceTo(LoginScreen(), context);
+                        submit(context);
                       }
                     else
                       {

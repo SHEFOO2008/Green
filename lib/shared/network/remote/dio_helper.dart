@@ -41,12 +41,13 @@ class DioHelper
       'lang':lang,
       'Authorization':token
     };
+
     dio =  Dio(
       BaseOptions(
         baseUrl: "https://student.valuxapps.com/api/",
         receiveDataWhenStatusError: true,
       ),
-    );
+      );
     return await dio!.post(
       url,
       queryParameters: query,
