@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:green/layout/cubit/states.dart';
+import 'package:green/models/categories_model.dart';
 import 'package:green/models/home_model.dart';
 import 'package:green/modules/categories/categories_screen.dart';
 import 'package:green/modules/favourites/favourites_screen.dart';
@@ -30,9 +31,14 @@ class ShopCubit extends Cubit<ShopStates>
     emit(ShopChangeBottomNavState());
   }
 
+  HomeModel? homeModel;
+
+  String? lang;
+
+
   void getHomeData()
   {
-    HomeModel? homeModel;
+
     emit(ShopLoadingHomeDataState());
 
     DioHelper.getData(
@@ -41,10 +47,24 @@ class ShopCubit extends Cubit<ShopStates>
     ).then((value) async{
       homeModel = HomeModel();
       await homeModel?.getData();
-
-      log(homeModel!.products![1].price.toString());
-      print('trying');
       emit(ShopSuccessHomeDataState());
+    });
+  }
+
+  CategoriesModel? categoriesModel;
+
+  void getCategories()
+  {
+
+    emit(ShopLoadingHomeDataState());
+
+    DioHelper.getData(
+      url: GET_CATEGORIES,
+      token: token,
+    ).then((value) async{
+      categoriesModel = CategoriesModel();
+      await categoriesModel?.getData();
+      emit(ShopSuccessCategoriesState());
     });
   }
 }

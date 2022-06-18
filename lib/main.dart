@@ -10,7 +10,7 @@ import 'modules/onBoarding/on_boarding_screen.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  DioHelper.init();
+  await DioHelper.init();
   await CacheHelper.init();
   Widget widget;
   var onBoarding = await CacheHelper.getData(key: 'onBoarding') ?? false;

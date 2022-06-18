@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:green/shared/styles/themes.dart';
 import 'package:http/http.dart' as http;
 
+import '../shared/constants.dart';
+
 class HomeModel
 {
   bool? status;
@@ -35,6 +37,11 @@ class HomeDataModel
   async{
     var response = await http.get(
       Uri.https('student.valuxapps.com', 'api/banners'),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': token,
+        'lang' : lang,
+      },
     );
     var jsonData = json.decode(response.body)['data'];
     for(var u in jsonData)
@@ -48,6 +55,11 @@ class HomeDataModel
   async{
     var response = await http.get(
       Uri.https('student.valuxapps.com', 'api/products'),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': token,
+        'lang' : lang,
+      },
     );
     var jsonData = json.decode(response.body)['data']['data'];
     for(var u in jsonData)
@@ -112,7 +124,9 @@ class ProductModel
     discount = json['discount'];
     image = json['image'];
     name = json['name'];
+    print(name);
     inFavourites = json['in_favourites'];
     inCart = json['in_cart'];
   }
 }
+

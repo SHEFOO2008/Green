@@ -45,6 +45,7 @@ dependencies:
   smooth_page_indicator: ^1.0.0+2
   fluttertoast: ^8.0.3
   http: ^0.13.4
+  carousel_slider: ^4.1.1
 
 
 dev_dependencies:
