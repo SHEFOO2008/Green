@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:green/modules/login/login_screen.dart';
-import 'package:green/shared/Functions.dart';
-import 'package:green/shared/components/DefaultTextButton.dart';
+import 'package:green/shared/functions.dart';
+import 'package:green/shared/components/default_text_button.dart';
 import 'package:green/shared/styles/colors.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-class BoardingModel
-{
+class BoardingModel {
   final String image;
   final String title;
   final String body;
@@ -49,7 +47,6 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
       title: 'On Boarding Title 4',
       body: 'On Boarding Body 4',
     ),
-
   ];
 
   bool isLast = false;
@@ -61,18 +58,16 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         titleSpacing: 5,
         actions: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: defaultTextButton(
-                text: 'SKIP',
-                textStyle: TextStyle(
-                  color: greenColor,
-                  fontWeight: FontWeight.w700,
-                ),
-              onPressed: () {
-                submit(context);
-              }
-            )
-          ),
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: defaultTextButton(
+                  text: 'SKIP',
+                  textStyle: TextStyle(
+                    color: greenColor,
+                    fontWeight: FontWeight.w700,
+                  ),
+                  onPressed: () {
+                    submit(context);
+                  })),
         ],
       ),
       body: Padding(
@@ -83,12 +78,15 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               child: PageView.builder(
                 physics: const BouncingScrollPhysics(),
                 controller: boardController,
-                itemBuilder: (context, index) => buildBoardingItem(boarding[index]),
+                itemBuilder: (context, index) =>
+                    buildBoardingItem(boarding[index]),
                 itemCount: boarding.length,
-                onPageChanged: (index)
-                {
-                  if(index == boarding.length - 1) isLast = true;
-                  else isLast = false;
+                onPageChanged: (index) {
+                  if (index == boarding.length - 1) {
+                    isLast = true;
+                  } else {
+                    isLast = false;
+                  }
                 },
               ),
             ),
@@ -107,26 +105,18 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                       dotWidth: 10,
                       spacing: 5.0,
                     ),
-                    count: boarding.length
-                ),
+                    count: boarding.length),
                 const Spacer(),
                 FloatingActionButton(
-
                   onPressed: () {
-                    if(isLast == true)
-                      {
-                        submit(context);
-                      }
-                    else
-                      {
-                        boardController.nextPage(
-                          duration: const Duration(
-                              milliseconds: 750
-                          ),
-                          curve: Curves.fastLinearToSlowEaseIn,
-                        );
-
-                      }
+                    if (isLast == true) {
+                      submit(context);
+                    } else {
+                      boardController.nextPage(
+                        duration: const Duration(milliseconds: 750),
+                        curve: Curves.fastLinearToSlowEaseIn,
+                      );
+                    }
                   },
                   child: const Icon(Icons.arrow_forward_ios),
                 )
@@ -138,24 +128,22 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     );
   }
 
-  Widget buildBoardingItem(BoardingModel model) => Column(
-      crossAxisAlignment: CrossAxisAlignment.start, children: [
-    Expanded(
-        child: Image(image: AssetImage(model.image))
-    ),
-    const SizedBox(
-      height: 30.0,
-    ),
-    Text(
-      model.title,
-      style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-    ),
-    const SizedBox(
-      height: 15.0,
-    ),
-    Text(
-      model.body,
-      style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-    ),
-  ]);
+  Widget buildBoardingItem(BoardingModel model) =>
+      Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Expanded(child: Image(image: AssetImage(model.image))),
+        const SizedBox(
+          height: 30.0,
+        ),
+        Text(
+          model.title,
+          style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        ),
+        const SizedBox(
+          height: 15.0,
+        ),
+        Text(
+          model.body,
+          style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+        ),
+      ]);
 }

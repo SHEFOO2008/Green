@@ -16,8 +16,6 @@ class LoginCubit extends Cubit<LoginStates> {
     required String password,
   }) {
     emit(LoginLoadingState());
-    print('test2');
-    print(email);
     DioHelper.postData(
         url: LOGIN,
          data:{
@@ -26,8 +24,6 @@ class LoginCubit extends Cubit<LoginStates> {
          },
     ).then((value) {
       loginModel = LoginModel.fromJosn(value.data);
-      print(loginModel?.data?.phone);
-      print(value.data);
       emit(LoginSuccessState(loginModel!));
       });
   }

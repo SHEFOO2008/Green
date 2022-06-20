@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-TextFormField Field(InputDecoration dc, {String? Function(String? value)? vl})
+TextFormField field(InputDecoration dc, {String? Function(String? value)? vl})
 {
   return TextFormField(
     decoration: dc,

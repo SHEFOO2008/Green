@@ -2,14 +2,12 @@ import 'package:conditional_builder_null_safety/conditional_builder_null_safety.
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:green/layout/shop_layout.dart';
-import 'package:green/models/login_model.dart';
 import 'package:green/modules/login/cubit/cubit.dart';
 import 'package:green/modules/login/cubit/states.dart';
 import 'package:green/modules/register/register_screen.dart';
-import 'package:green/shared/Functions.dart';
-import 'package:green/shared/components/FlutterToast.dart';
+import 'package:green/shared/functions.dart';
+import 'package:green/shared/components/flutter_toast.dart';
 import 'package:green/shared/network/local/cache_helper.dart';
 import '../../shared/custom_widgets/TextFormFieldWidget.dart';
 
@@ -31,8 +29,6 @@ class LoginScreen extends StatelessWidget {
             {
               if(state.loginModel.status == true)
                 {
-                  print(state.loginModel.data?.token);
-                  print(state.loginModel.message);
                   showToast(
                       text: state.loginModel.message!,
                       state: ToastStates.success,
@@ -43,7 +39,6 @@ class LoginScreen extends StatelessWidget {
                 }
               else
                 {
-                  print(state.loginModel.message);
                   showToast(
                     text: state.loginModel.message!,
                     state: ToastStates.error,

@@ -26,7 +26,6 @@ class DioHelper
        'Content-Type':'application/json',
        'Authorization':token,
      };
-     print(dio?.options.headers);
     return await dio!.get(url, queryParameters: query);
   }
 

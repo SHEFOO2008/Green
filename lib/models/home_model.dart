@@ -1,109 +1,110 @@
 import 'dart:convert';
-import 'package:green/shared/styles/themes.dart';
 import 'package:http/http.dart' as http;
 
 import '../shared/constants.dart';
 
-class HomeModel
-{
+class HomeModel {
   bool? status;
   List<BannerModel>? banners = [];
   List<ProductModel>? products = [];
+
   HomeModel({
     this.status,
     this.banners,
     this.products,
   });
-  getData()
-  async{
+
+  getData() async {
     HomeDataModel homeDataModel = HomeDataModel();
 
     await homeDataModel.init();
     banners = homeDataModel.banners;
     products = homeDataModel.products;
   }
-  HomeModel.fromJson(Map<String, dynamic> json)
-  {
+
+  HomeModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
   }
 }
 
-class HomeDataModel
-{
-
+class HomeDataModel {
   List<BannerModel> banners = [];
   List<ProductModel> products = [];
-  Future getBanners()
-  async{
+
+  Future getBanners() async {
     var response = await http.get(
       Uri.https('student.valuxapps.com', 'api/banners'),
       headers: {
         'Content-Type': 'application/json',
         'Authorization': token,
-        'lang' : lang,
+        'lang': lang,
       },
     );
     var jsonData = json.decode(response.body)['data'];
-    for(var u in jsonData)
-      {
-          BannerModel banner = BannerModel(id: u['id'], image: u['image']);
-          banners.add(banner);
-      }
+    for (var u in jsonData) {
+      BannerModel banner = BannerModel(id: u['id'], image: u['image']);
+      banners.add(banner);
+    }
     return banners;
   }
-  Future getProducts()
-  async{
+
+  Future getProducts() async {
     var response = await http.get(
       Uri.https('student.valuxapps.com', 'api/products'),
       headers: {
         'Content-Type': 'application/json',
         'Authorization': token,
-        'lang' : lang,
+        'lang': lang,
       },
     );
     var jsonData = json.decode(response.body)['data']['data'];
-    for(var u in jsonData)
-    {
-      ProductModel product = ProductModel(id: u['id'], name: u['name'], price: u['price'], image: u['image'], oldPrice: u['old_price'], discount: u['discount'], inCart: u['in_cart'], inFavourites: u['in_favourites'],);
+    for (var u in jsonData) {
+      ProductModel product = ProductModel(
+        id: u['id'],
+        name: u['name'],
+        price: u['price'],
+        image: u['image'],
+        oldPrice: u['old_price'],
+        discount: u['discount'],
+        inCart: u['in_cart'],
+        inFavorites: u['in_favorites'],
+      );
       products.add(product);
     }
     return products;
   }
 
-  Future init ()
-  async {
+  Future init() async {
     await getBanners();
     await getProducts();
   }
 }
 
-class BannerModel
-{
+class BannerModel {
   int? id;
   String? image;
+
   BannerModel({
     required this.id,
     required this.image,
-});
+  });
 
-  BannerModel.fromJson(Map<String, dynamic> json)
-  {
+  BannerModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     image = json['image'];
   }
 }
 
-class ProductModel
-{
+class ProductModel {
   int? id;
   dynamic price;
   dynamic oldPrice;
   dynamic discount;
   String? image;
   String? name;
-  bool? inFavourites;
+  bool? inFavorites;
   bool? inCart;
-  
+
   ProductModel({
     required this.id,
     required this.price,
@@ -111,22 +112,18 @@ class ProductModel
     required this.discount,
     required this.image,
     required this.name,
-    required this.inFavourites,
+    required this.inFavorites,
     required this.inCart,
   });
 
-
-  ProductModel.fromJson(Map<String, dynamic> json)
-  {
+  ProductModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     price = json['price'];
     oldPrice = json['old_price'];
     discount = json['discount'];
     image = json['image'];
     name = json['name'];
-    print(name);
-    inFavourites = json['in_favourites'];
+    inFavorites = json['in_favorites'];
     inCart = json['in_cart'];
   }
 }
-

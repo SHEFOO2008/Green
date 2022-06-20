@@ -2,11 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:green/layout/cubit/cubit.dart';
 import 'package:green/layout/cubit/states.dart';
-import 'package:green/modules/favourites/favourites_screen.dart';
 import 'package:green/modules/settings/settings_screen.dart';
-import 'package:green/shared/Functions.dart';
-import 'package:green/shared/components/DefaultTextButton.dart';
-import 'package:green/shared/network/local/cache_helper.dart';
+import 'package:green/shared/functions.dart';
 
 class ShopLayout extends StatelessWidget {
   const ShopLayout({Key? key}) : super(key: key);
@@ -56,7 +53,7 @@ class ShopLayout extends StatelessWidget {
             ),
             floatingActionButton: FloatingActionButton(
               onPressed: () {
-                ShopCubit()..getHomeData();
+                ShopCubit().getHomeData();
                 },
             ),
           );
@@ -68,12 +65,12 @@ class ShopLayout extends StatelessWidget {
 
 class CustomSearchDelegate extends SearchDelegate {
   List<String> searchTerms = [
-    'ahmed',
-    'sherif',
-    'rawda',
-    'mariam',
-    'mohamed',
-    'mahmoud',
+    'Ahmed',
+    'Sherif',
+    'Rawda',
+    'Mariam',
+    'Mohamed',
+    'Mahmoud',
   ];
 
   @override
