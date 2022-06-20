@@ -7,7 +7,6 @@ import 'package:green/modules/login/cubit/cubit.dart';
 import 'package:green/modules/login/cubit/states.dart';
 import 'package:green/modules/register/register_screen.dart';
 import 'package:green/shared/functions.dart';
-import 'package:green/shared/components/flutter_toast.dart';
 import 'package:green/shared/network/local/cache_helper.dart';
 import '../../shared/custom_widgets/TextFormFieldWidget.dart';
 
@@ -29,20 +28,20 @@ class LoginScreen extends StatelessWidget {
             {
               if(state.loginModel.status == true)
                 {
-                  showToast(
-                      text: state.loginModel.message!,
-                      state: ToastStates.success,
-                  );
+                  // showToast(
+                  //     text: state.loginModel.message!,
+                  //     state: ToastStates.success,
+                  // );
                   CacheHelper.saveData(key: 'token', value: state.loginModel.data?.token).then((value) {
                     navigateAndReplaceTo(const ShopLayout(), context);
                   });
                 }
               else
                 {
-                  showToast(
-                    text: state.loginModel.message!,
-                    state: ToastStates.error,
-                  );
+                  // showToast(
+                  //   text: state.loginModel.message!,
+                  //   state: ToastStates.error,
+                  // );
                 }
             }
         },

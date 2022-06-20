@@ -7,6 +7,7 @@ import 'package:green/models/categories_model.dart';
 import 'package:green/models/home_model.dart';
 import 'package:green/modules/login/cubit/cubit.dart';
 import 'package:green/shared/styles/colors.dart';
+import 'package:like_button/like_button.dart';
 
 import '../../layout/cubit/cubit.dart';
 import '../../layout/cubit/states.dart';
@@ -159,24 +160,37 @@ Widget buildGridProduct(ProductModel model, BuildContext context) => Container(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-            Stack(
-            alignment: AlignmentDirectional.bottomEnd,
-            children: [
-              IconButton(
-                icon: Icon(
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: LikeButton(
+              mainAxisAlignment: MainAxisAlignment.end,
+              onTap: (bool isLiked) async {
+                isLiked = !isLiked;
+                ShopCubit.get(context).changeFavorites(model.id!);
+                return isLiked;
+              },
+              isLiked: ShopCubit.get(context).favourites[model.id]!,
+              size: 25,
+              circleColor: const CircleColor(
+                start: Colors.red,
+                end: Colors.redAccent,
+              ),
+              bubblesColor: const BubblesColor(
+                dotPrimaryColor: Colors.red,
+                dotSecondaryColor: Colors.redAccent,
+              ),
+              likeBuilder: (bool isLiked) {
+                return Icon(
                   ShopCubit.get(context).favourites[model.id]!
-                  ? Icons.favorite
-                  : Icons.favorite_border,
+                      ? Icons.favorite
+                      : Icons.favorite_border,
                   size: 25.0,
                   color: ShopCubit.get(context).favourites[model.id]!
                       ? Colors.redAccent
                       : Colors.black,
-                ),
-                onPressed: () {
-                  ShopCubit.get(context).changeFavorites(model.id!);
-                },
-              ),
-            ],
+                );
+              },
+            ),
           ),
           Stack(
             alignment: AlignmentDirectional.bottomStart,

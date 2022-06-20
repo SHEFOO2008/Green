@@ -51,11 +51,6 @@ class ShopLayout extends StatelessWidget {
                 cubit.changeBottom(index);
               }),
             ),
-            floatingActionButton: FloatingActionButton(
-              onPressed: () {
-                ShopCubit().getHomeData();
-                },
-            ),
           );
         },
       ),
